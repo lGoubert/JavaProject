@@ -7,7 +7,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `country` (
 	`id` INT NOT NULL AUTO_INCREMENT,
-	`flags` blob NOT NULL,
+	`flags` longblob NOT NULL,
 	`country` varchar(255) NOT NULL,
 	`difficulty` INT(255) NOT NULL,
 	PRIMARY KEY (`id`)
