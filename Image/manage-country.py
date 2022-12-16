@@ -9,7 +9,10 @@ def main():
     print("Start")
 
     #Crate a file named countries.sql
-    file = open("countries.sql", "w")
+    file1 = open("countries1.sql", "w")
+    file2 = open("countries2.sql", "w")
+    file3 = open("countries3.sql", "w")
+    file4 = open("countries4.sql", "w")
 
     #Get the name of every file in the folder where this script is located
     files = os.listdir()
@@ -27,29 +30,32 @@ def main():
             flag = base64.b64encode(open(f, "rb").read()).decode("utf-8")
             
             #Create a insert statement int the table country with the following value flags wihch is the image (blob), country which is the country name and difficulty wich is at one.
-            file.write("INSERT INTO countries (flag, country, difficulty) VALUES ('" + flag + "', '" + country + "', 1);")
+            #Save the insert into a variable
+            insert = "INSERT INTO countries (flag, country, difficulty) VALUES ('" + flag + "', '" + country + "', 1);"
+            
+            #Write the 50 first into a file named countries1.sql using file1
+            if files.index(f) < 50:
+                file1.write(insert + "")
 
-    #Close the file
-    file.close()
+            #Write the 50 next into a file named countries2.sql using file2
+            elif files.index(f) < 100:
+                file2.write(insert + "")
+            
+            #Write the 50 next into a file named countries3.sql using file3
+            elif files.index(f) < 150:
+                file3.write(insert + "")
+                
+            #Write the last one into a file named countries4.sql using file4
+            else:
+                file4.write(insert + "")
 
-    #Ask the user if the script should be executed
-    if input("Do you want to execute the script? (y/n)") == "y":
-        #Execute the script
-        insert_into_database()
-
+    #Close the files
+    file1.close()
+    file2.close()
+    file3.close()
+    file4.close()
+    
     print("End")
-
-#Def InsertIntoDatabase
-def insert_into_database():
-    #Variables
-    user = "javaprojet"
-    password = "devops"
-    database = "javaprojet"
-    host = "45.155.169.116"
-    port= "6006"
-
-    #Execute the script into the database using the variables
-    os.system("mysql -u " + user + " -p" + password + " -D " + database + " -h " + host + " -P " + port + " < countries.sql")
 
 #If Main
 if __name__ == "__main__":
