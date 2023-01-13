@@ -1,8 +1,26 @@
 package com.devops.javaprojet.server;
-import java.net.*;
+import com.devops.javaprojet.server.database.Database;
+import com.devops.javaprojet.server.database.DatabaseDAO;
+
 import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class MainServer {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException, NoSuchAlgorithmException {
+        /* Connection a la base de données */
+        Database database = new Database("jdbc:mariadb://45.155.169.116:6006/javaprojet","javaprojet","devops");
+        DatabaseDAO dataDAO = new DatabaseDAO(database.getMariadbConnection());
+        dataDAO.InsertNewUser("username", "password");
+        ResultSet result = dataDAO.GetAllCountries();
+        while (result.next()) {
+            var country = result.getString("country");
+            System.out.println(country);
+        }
+
         int port = 1234; // Le numéro de port sur lequel le serveur écoutera
 
         ServerSocket serverSocket = new ServerSocket(port);
