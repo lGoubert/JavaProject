@@ -9,6 +9,9 @@ import java.net.Socket;
 public class Connection implements Runnable {
     private Client client;
     private Socket socket;
+    private BufferedReader in;
+    private PrintWriter out;
+    private BufferedReader stdIn;
 
     public Connection(Client client, Socket socket) {
         this.client = client;
@@ -19,10 +22,10 @@ public class Connection implements Runnable {
         try {
             System.out.println("Connexion établie avec " + socket.getRemoteSocketAddress());
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
+            stdIn = new BufferedReader(new InputStreamReader(System.in));
 
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
             String userInput;
 
             while ((userInput = stdIn.readLine()) != null) {
