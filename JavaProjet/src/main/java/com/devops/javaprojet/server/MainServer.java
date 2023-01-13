@@ -1,4 +1,5 @@
 package com.devops.javaprojet.server;
+import com.devops.javaprojet.server.api.Api;
 import com.devops.javaprojet.server.database.Database;
 import com.devops.javaprojet.server.database.DatabaseDAO;
 
@@ -14,6 +15,8 @@ public class MainServer {
         /* Connection a la base de données */
         Database database = new Database("jdbc:mariadb://45.155.169.116:6006/javaprojet","javaprojet","devops");
         DatabaseDAO dataDAO = new DatabaseDAO(database.getMariadbConnection());
+        Api api = new Api(dataDAO);
+        
         dataDAO.InsertNewUser("username", "password");
         ResultSet result = dataDAO.GetAllCountries();
         while (result.next()) {
