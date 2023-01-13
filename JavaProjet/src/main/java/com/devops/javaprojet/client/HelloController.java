@@ -1,4 +1,4 @@
-package com.devops.javaprojet;
+package com.devops.javaprojet.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
