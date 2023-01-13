@@ -84,4 +84,14 @@ public class DatabaseDAO {
         return  result.getString("username");
     }
 
+    public int GetUserInfo(String username, String password) throws SQLException {
+        PreparedStatement prepareStatement = connection.prepareStatement("SELECT id, username WHERE username = ? AND password= ?");
+        prepareStatement.setString(1, username);
+        prepareStatement.setString(1, password);
+        ResultSet result = prepareStatement.executeQuery();
+        if (result.next() == false) {
+            return 0;
+        }
+        return 1;
+    }
 }

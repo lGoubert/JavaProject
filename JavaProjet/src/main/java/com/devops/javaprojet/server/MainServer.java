@@ -14,16 +14,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MainServer {
-    public static void main(String[] args) throws IOException {
-        Integer port = 5000;
-        Server server = new Server(port);
-        if (server != null) {
-            System.out.println("Server connected.");
+    public static void main(String[] args) throws IOException, SQLException, NoSuchAlgorithmException {
         /* Connection a la base de données */
         Database database = new Database("jdbc:mariadb://45.155.169.116:6006/javaprojet","javaprojet","devops");
         DatabaseDAO dataDAO = new DatabaseDAO(database.getMariadbConnection());
         Api api = new Api(dataDAO);
-        
+        Integer port = 5000;
+        Server server = new Server(port);
+        if (server != null) {
+            System.out.println("Server connected.");
+        }
         dataDAO.InsertNewUser("username", "password");
         ResultSet result = dataDAO.GetAllCountries();
         while (result.next()) {
@@ -31,7 +31,6 @@ public class MainServer {
             System.out.println(country);
         }
 
-        }
     }
 
     private static void printUsage() {
