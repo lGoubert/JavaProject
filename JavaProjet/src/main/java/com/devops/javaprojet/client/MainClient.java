@@ -5,7 +5,7 @@ import java.io.*;
 public class MainClient {
     public static void main(String[] args) throws IOException {
         String serverHostname = "localhost"; // Adresse IP ou nom d'hôte du serveur
-        int port = 1234; // Numéro de port sur lequel le serveur écoute
+        int port = 5000; // Numéro de port sur lequel le serveur écoute
 
         Socket clientSocket = new Socket(serverHostname, port);
         System.out.println("Connexion établie avec " + clientSocket.getRemoteSocketAddress());

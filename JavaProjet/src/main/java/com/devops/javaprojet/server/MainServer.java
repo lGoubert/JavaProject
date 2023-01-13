@@ -44,4 +44,9 @@ public class MainServer {
             clientSocket.close();
         }
     }
+
+    private static void printUsage() {
+        System.out.println("java server.Server <port>");
+        System.out.println("\t<port>: server's port");
+    }
 }
