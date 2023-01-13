@@ -18,15 +18,19 @@ public class Client {
     private String address;
     private int port;
     private Socket socket;
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    private Connection connection;
 
     public Client(String address, int port) {
         this.address = address;
         this.port = port;
         try {
             socket = new Socket(address, port);
-            Connection connection = new Connection(this, socket);
+            connection = new Connection(this, socket);
             Thread connectionThread = new Thread(connection);
             connectionThread.start();
 

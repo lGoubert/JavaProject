@@ -37,6 +37,7 @@ public class Connection implements Runnable  {
                 while ((inputLine = in.readLine()) != null) {
                     // Traitement de la requête du client
                     outputLine = "Réponse du serveur : " + inputLine;
+                    System.out.println(outputLine);
                     out.println(outputLine);
                     if (inputLine.equals("Bye."))
                         break;

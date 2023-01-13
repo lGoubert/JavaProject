@@ -10,6 +10,11 @@ public class Connection implements Runnable {
     private Client client;
     private Socket socket;
     private BufferedReader in;
+
+    public PrintWriter getOut() {
+        return out;
+    }
+
     private PrintWriter out;
     private BufferedReader stdIn;
 

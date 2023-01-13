@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameApplication extends Application {
+
+    private static Client client;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
@@ -26,15 +29,15 @@ public class GameApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
         String address = "localhost";
         Integer port = 5000;
-        Client c = new Client(address, port);
+        client = new Client(address, port);
+        launch();
     }
 
     public void envoyerMessage(KeyEvent event, TextField textField) {
         if (KeyCode.ENTER == event.getCode()) {
-
+            client.getConnection().getOut().println(textField.getText());
         }
     }
 }
