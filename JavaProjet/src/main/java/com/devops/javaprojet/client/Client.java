@@ -26,9 +26,9 @@ public class Client {
         this.port = port;
         try {
             socket = new Socket(address, port);
-            Connection clientReceive = new Connection(this, socket);
-            Thread receive = new Thread(clientReceive);
-            receive.start();
+            Connection connection = new Connection(this, socket);
+            Thread connectionThread = new Thread(connection);
+            connectionThread.start();
 
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block

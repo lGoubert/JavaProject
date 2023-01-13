@@ -6,11 +6,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import static com.devops.javaprojet.client.GameController.*;
 
 public class GameApplication extends Application {
     @Override
@@ -20,9 +20,9 @@ public class GameApplication extends Application {
         stage.setTitle("Flagame");
         stage.setScene(scene);
         stage.show();
-
-        chatText = new TextField();
-        chatText.setOnAction(event -> envoyerMessage());
+        if (fxmlLoader.getController() instanceof GameController gameController) {
+            gameController.getChatText().setOnKeyPressed(event -> envoyerMessage(event, gameController.getChatText()));
+        }
     }
 
     public static void main(String[] args) {
@@ -32,7 +32,9 @@ public class GameApplication extends Application {
         Client c = new Client(address, port);
     }
 
-    public void envoyerMessage(){
+    public void envoyerMessage(KeyEvent event, TextField textField) {
+        if (KeyCode.ENTER == event.getCode()) {
 
+        }
     }
 }
