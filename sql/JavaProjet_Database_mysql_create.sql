@@ -27,9 +27,9 @@ CREATE TABLE `messages` (
 	PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `games_scores` ADD CONSTRAINT `games_scores_fk0` FOREIGN KEY (`id_user_one`) REFERENCES `users`(`id`);
+ALTER TABLE `games_scores` ADD CONSTRAINT `games_scores_fk` FOREIGN KEY (`id_user`) REFERENCES `users`(`id`);
 
-ALTER TABLE `messages` ADD CONSTRAINT `messages_fk0` FOREIGN KEY (`id_sender`) REFERENCES `users`(`id`);
+ALTER TABLE `messages` ADD CONSTRAINT `messages_fk` FOREIGN KEY (`id_user`) REFERENCES `users`(`id`);
 
 
 
