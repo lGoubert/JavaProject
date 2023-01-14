@@ -42,16 +42,15 @@ public class DatabaseDAO {
     }
 
     public ResultSet GetScoreboard() throws SQLException {
-        PreparedStatement prepareStatement = connection.prepareStatement("SELECT GREATEST(score_user_one, score_user_two) AS \"Scoreboard\" FROM games_scores ORDER BY \"Scoreboard\" DESC LIMIT 10");
+        PreparedStatement prepareStatement = connection.prepareStatement("SELECT id_user, SUM(score) AS \"score\" FROM games_scores GROUP BY id_user ORDER BY \"score\" DESC LIMIT 10;");
         ResultSet result = prepareStatement.executeQuery();
         return result;
     }
 
-    public void InsertMessage(int idSender, int idReceiver, String message) throws SQLException {
-        PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO messages VALUES (?,?,?)");
+    public void InsertMessage(int idSender, String message) throws SQLException {
+        PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO messages (`id`, `id_user`, `message`)VALUES (NULL,?,?)");
         prepareStatement.setInt(1, idSender);
-        prepareStatement.setInt(2, idReceiver);
-        prepareStatement.setString(3, message);
+        prepareStatement.setString(2, message);
         ResultSet result = prepareStatement.executeQuery();
     }
 
@@ -77,7 +76,7 @@ public class DatabaseDAO {
     }
 
     public String GetUsernameWithID(int idUser) throws SQLException {
-        PreparedStatement prepareStatement = connection.prepareStatement("SELECT usenrame WHERE id = ?");
+        PreparedStatement prepareStatement = connection.prepareStatement("SELECT username WHERE id = ?");
         prepareStatement.setInt(1, idUser);
         ResultSet result = prepareStatement.executeQuery();
         result.first();
