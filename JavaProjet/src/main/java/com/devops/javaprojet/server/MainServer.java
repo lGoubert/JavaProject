@@ -14,7 +14,6 @@ public class MainServer {
         /* Connection a la base de données */
         Database database = new Database("jdbc:mariadb://45.155.169.116:6006/javaprojet","javaprojet","devops");
         DatabaseDAO dataDAO = new DatabaseDAO(database.getMariadbConnection());
-        dataDAO.InsertNewUser("username", "password");
         ResultSet result = dataDAO.GetAllCountries();
         while (result.next()) {
             var country = result.getString("country");
