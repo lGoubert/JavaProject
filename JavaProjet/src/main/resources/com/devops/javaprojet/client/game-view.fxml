@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.GameController">
+   <children>
+      <TextField fx:id="chatText" layoutX="347.0" layoutY="360.0" prefHeight="26.0" prefWidth="223.0" promptText="Ecrivez un message..." />
+      <TextFlow fx:id="chatFlow" layoutX="347.0" layoutY="141.0" prefHeight="212.0" prefWidth="223.0" />
+   </children>
+</AnchorPane>
