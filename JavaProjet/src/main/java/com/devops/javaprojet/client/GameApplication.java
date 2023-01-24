@@ -59,4 +59,12 @@ public class GameApplication extends Application {
             gameController.getChatText().setText("");
         }
     }
+
+    public static void ChangeScene(String sceneName, Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource(sceneName));
+        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+        stage.setTitle("Flagame");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

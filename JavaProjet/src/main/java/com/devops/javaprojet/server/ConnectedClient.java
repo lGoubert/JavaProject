@@ -59,12 +59,21 @@ public class ConnectedClient implements Runnable {
             try {
                 if (in != null) {
                     if ((mess = (Message) in.readObject()) != null) {
-                        if (mess.getType() == 1){
-                            mess.setSender(String.valueOf(id));
-                            server.broadcastMessage(mess, id);
-                            System.out.println(mess.getContent());
-                        } else if (mess.getType() == 2) {
-                            //request ou réponse
+                        switch (mess.getType()){
+                            case 1: //Message public
+                                mess.setSender(String.valueOf(id));
+                                server.broadcastMessage(mess, id);
+                                System.out.println(mess.getContent());
+                                break;
+                            case 2: //Register
+                                break;
+                            case 3: //Login
+                                break;
+                            case 4: //Réponse
+                                break;
+
+                            default:
+                                break;
                         }
                     } else {
                         isActive = false;

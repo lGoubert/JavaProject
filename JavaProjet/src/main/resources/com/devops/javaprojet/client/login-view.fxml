@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="loginButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="203.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="200.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="150.8" minHeight="0.0" prefHeight="29.799998092651364" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="220.8" minHeight="0.0" prefHeight="57.79999999999999" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="231.8000114440918" minHeight="0.0" prefHeight="194.59999999999997" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="196.0" minHeight="0.0" prefHeight="87.80000000000001" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="290.79999999999995" minHeight="8.800000000000011" prefHeight="202.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="197.39999999999998" minHeight="0.0" prefHeight="73.60000000000002" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox prefHeight="1.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="NOM DU JEU ICI" />
+         </children>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Login" />
+            <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="Username" />
+            <TextField fx:id="loginUsername" />
+            <TextArea editable="false" layoutX="10.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" text="Password" />
+            <PasswordField fx:id="loginPassword" />
+            <Button fx:id="loginButton" mnemonicParsing="false" text="Login" />
+         </children>
+      </VBox>
+      <VBox layoutX="210.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Register" />
+            <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="Username" />
+            <TextField fx:id="registerUsername" />
+            <TextArea editable="false" layoutX="10.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" text="Password" />
+            <PasswordField fx:id="registerPassword" />
+            <Button fx:id="registerButton" mnemonicParsing="false" text="Register" />
+         </children>
+      </VBox>
+   </children>
+</GridPane>
