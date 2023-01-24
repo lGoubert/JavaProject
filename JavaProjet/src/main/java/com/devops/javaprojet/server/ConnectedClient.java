@@ -50,7 +50,6 @@ public class ConnectedClient implements Runnable {
     public void run() {
         try {
             in = new ObjectInputStream(socket.getInputStream());
-            Message flagInfo
             server.broadcastMessage(new Message("",server.getApi().GetInfoCountryRandom(),2),999);
         } catch (IOException e) {
             // TODO Auto-generated catch block
