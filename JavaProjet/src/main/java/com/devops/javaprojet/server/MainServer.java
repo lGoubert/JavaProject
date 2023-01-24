@@ -1,4 +1,6 @@
 package com.devops.javaprojet.server;
+import com.devops.javaprojet.server.api.Api;
+import com.devops.javaprojet.common.Message;
 import com.devops.javaprojet.server.database.Database;
 import com.devops.javaprojet.server.database.DatabaseDAO;
 
@@ -26,6 +28,9 @@ public class MainServer {
         Server server = new Server(port, api);
         if (server != null) {
             System.out.println("Server connected.");
+
+
+            Message message = new Message()
         }
     }
 }
