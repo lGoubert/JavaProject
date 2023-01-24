@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 public class MainServer {
     public static void main(String[] args) throws IOException, SQLException, NoSuchAlgorithmException {
@@ -22,7 +23,7 @@ public class MainServer {
             System.out.println(country);
         }
         Integer port = 1234;
-        Server server = new Server(port);
+        Server server = new Server(port, api);
         if (server != null) {
             System.out.println("Server connected.");
         }

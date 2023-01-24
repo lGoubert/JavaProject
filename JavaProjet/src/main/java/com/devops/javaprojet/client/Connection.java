@@ -2,6 +2,7 @@ package com.devops.javaprojet.client;
 
 import com.devops.javaprojet.common.Message;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
 import java.io.*;
@@ -44,7 +45,14 @@ public class Connection implements Runnable {
                     });
 
                 }
-                else if (userInput.getType() == 2){
+                else if(userInput.getType() == 2){
+                    Platform.runLater(() -> {
+                        String imgValue = userInput.getMap().get("flag");
+                        Image imgFlag = new Image(imgValue);
+                        gameController.getImgFlag().setImage(imgFlag);
+                    });
+                }
+                else if (userInput.getType() == 3){
 
                 }
             }

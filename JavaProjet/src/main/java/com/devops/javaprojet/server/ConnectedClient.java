@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 
 public class ConnectedClient implements Runnable {
     private static int idCounter;
@@ -49,9 +50,13 @@ public class ConnectedClient implements Runnable {
     public void run() {
         try {
             in = new ObjectInputStream(socket.getInputStream());
+            Message flagInfo
+            server.broadcastMessage(new Message("",server.getApi().GetInfoCountryRandom(),2),999);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         boolean isActive = true;
         while (isActive) {

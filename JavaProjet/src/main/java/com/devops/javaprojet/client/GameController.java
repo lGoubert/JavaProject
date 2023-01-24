@@ -3,6 +3,7 @@ package com.devops.javaprojet.client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.TextFlow;
 
 public class GameController {
@@ -23,5 +24,16 @@ public class GameController {
 
     @FXML
     private TextFlow chatFlow;
+
+    public ImageView getImgFlag() {
+        return imgFlag;
+    }
+
+    public void setImgFlag(ImageView imgFlag) {
+        this.imgFlag = imgFlag;
+    }
+
+    @FXML
+    private ImageView imgFlag;
 
 }

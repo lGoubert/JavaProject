@@ -1,12 +1,19 @@
 package com.devops.javaprojet.server;
 
 import com.devops.javaprojet.common.Message;
+import com.devops.javaprojet.server.api.Api;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Server {
     private int port;
+
+    public Api getApi() {
+        return api;
+    }
+
+    private Api api;
     private List<ConnectedClient> clients;
 
     public int getNumClients() {
@@ -17,7 +24,8 @@ public class Server {
         return port;
     }
 
-    public Server(int port) {
+    public Server(int port, Api api) {
+        this.api = api;
         this.port = port;
         this.clients = new ArrayList<ConnectedClient>();
         Thread threadConnection = new Thread(new Connection(this));
