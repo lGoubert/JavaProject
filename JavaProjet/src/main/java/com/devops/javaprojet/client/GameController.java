@@ -12,6 +12,15 @@ public class GameController {
 
     @FXML
     private TextField chatText;
+
+    public void setChatFlow(TextFlow chatFlow) {
+        this.chatFlow = chatFlow;
+    }
+
+    public TextFlow getChatFlow() {
+        return chatFlow;
+    }
+
     @FXML
     private TextFlow chatFlow;
 

@@ -1,46 +1,57 @@
 package com.devops.javaprojet.client;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import com.devops.javaprojet.common.Message;
+import javafx.application.Platform;
+import javafx.scene.text.Text;
+
+import java.io.*;
 import java.net.Socket;
 
 public class Connection implements Runnable {
     private Client client;
     private Socket socket;
-    private BufferedReader in;
+    private ObjectInputStream in;
 
-    public PrintWriter getOut() {
+    public ObjectOutputStream getOut() {
         return out;
     }
 
-    private PrintWriter out;
-    private BufferedReader stdIn;
+    private GameController gameController;
 
-    public Connection(Client client, Socket socket) {
+    private ObjectOutputStream out;
+
+    public Connection(Client client, Socket socket, GameController gameController) {
         this.client = client;
         this.socket = socket;
+        this.gameController = gameController;
     }
 
     public void run() {
         try {
             System.out.println("Connexion établie avec " + socket.getRemoteSocketAddress());
 
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(socket.getOutputStream(), true);
-            stdIn = new BufferedReader(new InputStreamReader(System.in));
+            in = new ObjectInputStream(socket.getInputStream());
+            out = new ObjectOutputStream(socket.getOutputStream());
+            boolean isActive = true;
 
-            String userInput;
+            while (isActive) {
+                Message userInput = (Message)in.readObject();
+                System.out.println(userInput.getSender() + " a ecrit " + userInput.getContent());
+                if(userInput.getType() == 1){
+                    Platform.runLater(() -> {
+                        Text receivedMessage = new Text(userInput.getSender() + " :" + userInput.getContent() + "\n" );
+                        gameController.getChatFlow().getChildren().add(receivedMessage);
+                    });
 
-            while ((userInput = stdIn.readLine()) != null) {
-                out.println(userInput);
-                System.out.println("Réponse du serveur : " + in.readLine());
-                if (userInput.equals("Bye."))
-                    break;
+                }
+                else if (userInput.getType() == 2){
+
+                }
             }
             socket.close();
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

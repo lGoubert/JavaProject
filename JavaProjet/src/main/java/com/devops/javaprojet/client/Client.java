@@ -18,19 +18,18 @@ public class Client {
     private String address;
     private int port;
     private Socket socket;
-
     public Connection getConnection() {
         return connection;
     }
 
     private Connection connection;
 
-    public Client(String address, int port) {
+    public Client(String address, int port, GameController gameController) {
         this.address = address;
         this.port = port;
         try {
             socket = new Socket(address, port);
-            connection = new Connection(this, socket);
+            connection = new Connection(this, socket, gameController);
             Thread connectionThread = new Thread(connection);
             connectionThread.start();
 
