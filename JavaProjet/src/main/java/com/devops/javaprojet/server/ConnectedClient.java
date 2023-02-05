@@ -51,7 +51,7 @@ public class ConnectedClient implements Runnable {
             this.out.flush();
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -130,8 +130,9 @@ public class ConnectedClient implements Runnable {
                 isActive = false;
             } catch (IOException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+                //e.printStackTrace();
                 isActive = false;
+                System.out.println("Un client viens de se déconnecter");
             }
 
         }

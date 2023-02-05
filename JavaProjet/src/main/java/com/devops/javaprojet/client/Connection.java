@@ -16,6 +16,8 @@ public class Connection implements Runnable {
 
     public void setLoginController(LoginController loginController) { this.loginController = loginController; }
 
+    public Socket getSocket() { return socket; }
+
     private Client client;
     private Socket socket;
     private ObjectInputStream in;
