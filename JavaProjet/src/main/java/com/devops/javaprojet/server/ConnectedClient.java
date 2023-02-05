@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 public class ConnectedClient implements Runnable {
     private static int idCounter;
@@ -14,6 +17,8 @@ public class ConnectedClient implements Runnable {
     private ObjectOutputStream out;
     private ObjectInputStream in;
 
+    private String name;
+
     public int getId() {
         return id;
     }
@@ -21,6 +26,10 @@ public class ConnectedClient implements Runnable {
     public void setId(int numClient) {
         id = numClient;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public ConnectedClient(Server server, Socket socket) {
         this.server = server;
@@ -59,17 +68,51 @@ public class ConnectedClient implements Runnable {
             try {
                 if (in != null) {
                     if ((mess = (Message) in.readObject()) != null) {
+                        ConnectedClient client = server.getClientById(id);
                         switch (mess.getType()){
-                            case 1: //Message public
-                                mess.setSender(String.valueOf(id));
+                            case 101: //Message public
+                                mess.setSender(client.getName());
+                                mess.setType(201);
+                                mess.setContent(mess.getContent());
                                 server.broadcastMessage(mess, id);
                                 System.out.println(mess.getContent());
                                 break;
-                            case 2: //Register
+                            case 102: //Login
+                                System.out.println(mess.getContent());
+                                String[] messArrayLogin = mess.getContent().split(Pattern.quote("|"), 2);
+                                String usernameLogin = messArrayLogin[0];
+                                String passwordLogin = messArrayLogin[1];
+                                try{
+                                    Message message = MainServer.api.Login(usernameLogin, passwordLogin);
+                                    server.sendMessageToClientId(message, id);
+                                    if(message.getType() == 203){
+                                        client.setName(usernameLogin);
+                                        server.announceConnection(client);
+                                    }
+                                }catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
                                 break;
-                            case 3: //Login
+                            case 103: //Register
+                                System.out.println(mess.getContent());
+                                String[] messArrayRegister = mess.getContent().split(Pattern.quote("|"), 2);
+                                String usernameRegister = messArrayRegister[0];
+                                String passwordRegister = messArrayRegister[1];
+                                try{
+                                    Message message = MainServer.api.Register(usernameRegister, passwordRegister);
+                                    server.sendMessageToClientId(message, id);
+                                    if(message.getType() == 205){
+                                        client.setName(usernameRegister);
+                                        server.announceConnection(client);
+                                    }
+                                }catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                } catch (NoSuchAlgorithmException e) {
+                                    throw new RuntimeException(e);
+                                }
                                 break;
-                            case 4: //Réponse
+                            case 104: //Response
+                                System.out.println(mess.getContent());
                                 break;
 
                             default:

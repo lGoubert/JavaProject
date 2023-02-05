@@ -14,11 +14,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MainServer {
+    public static Api api;
     public static void main(String[] args) throws IOException, SQLException, NoSuchAlgorithmException {
         /* Connection a la base de données */
         Database database = new Database("jdbc:mariadb://45.155.169.116:6006/javaprojet","javaprojet","devops");
         DatabaseDAO dataDAO = new DatabaseDAO(database.getMariadbConnection());
-        Api api = new Api(dataDAO);
+        api = new Api(dataDAO);
         
         ResultSet result = dataDAO.GetAllCountries();
         while (result.next()) {

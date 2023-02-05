@@ -1,46 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="loginButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="689.0" style="-fx-background-color: none;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.LoginController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="203.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="200.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="10.0" prefWidth="261.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="143.0" />
   </columnConstraints>
   <rowConstraints>
+      <RowConstraints maxHeight="150.8" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="150.8" minHeight="0.0" prefHeight="29.799998092651364" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="220.8" minHeight="0.0" prefHeight="57.79999999999999" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="231.8000114440918" minHeight="0.0" prefHeight="194.59999999999997" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="196.0" minHeight="0.0" prefHeight="87.80000000000001" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="290.79999999999995" minHeight="8.800000000000011" prefHeight="202.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="197.39999999999998" minHeight="0.0" prefHeight="73.60000000000002" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="231.8000114440918" minHeight="0.0" prefHeight="220.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="306.0" minHeight="8.800000000000011" prefHeight="303.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="1.0" prefWidth="200.0" GridPane.columnIndex="1">
+      <VBox prefHeight="1.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="NOM DU JEU ICI" />
+            <TextArea editable="false" prefHeight="32.0" prefWidth="203.0" style="-fx-background-color: none; -fx-font-alignment: center;" text="Flagame" />
          </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
       </VBox>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Login" />
-            <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="Username" />
+            <TextArea editable="false" prefHeight="25.0" prefWidth="261.0" style="-fx-background-color: none;" text="Login" />
+            <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="261.0" style="-fx-background-color: none;" text="Username">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin></TextArea>
             <TextField fx:id="loginUsername" />
-            <TextArea editable="false" layoutX="10.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" text="Password" />
+            <TextArea editable="false" layoutX="10.0" layoutY="49.0" prefHeight="23.0" prefWidth="261.0" style="-fx-background-color: none;" text="Password">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin></TextArea>
             <PasswordField fx:id="loginPassword" />
-            <Button fx:id="loginButton" mnemonicParsing="false" text="Login" />
+            <Button fx:id="loginButton" onAction="#loginButtonHandle" mnemonicParsing="false" text="Connexion">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin></Button>
          </children>
       </VBox>
-      <VBox layoutX="210.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <VBox layoutX="210.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="Register" />
-            <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="Username" />
-            <TextField fx:id="registerUsername" />
-            <TextArea editable="false" layoutX="10.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" text="Password" />
+            <TextArea editable="false" prefHeight="32.0" prefWidth="261.0" style="-fx-background-color: none;" text="Register" />
+            <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="5.0" prefWidth="261.0" style="-fx-background-color: none;" text="Username">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin></TextArea>
+            <TextField fx:id="registerUsername">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></TextField>
+            <TextArea editable="false" layoutX="10.0" layoutY="49.0" prefHeight="20.0" prefWidth="261.0" style="-fx-background-color: none;" text="Password">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin></TextArea>
             <PasswordField fx:id="registerPassword" />
-            <Button fx:id="registerButton" mnemonicParsing="false" text="Register" />
+            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonHandle" text="Créer un compte">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin></Button>
+         </children>
+         <GridPane.margin>
+            <Insets top="32.0" />
+         </GridPane.margin>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+         <children>
+            <TextArea fx:id="statusMessage" prefHeight="22.0" prefWidth="200.0" style="-fx-background-color: none;" text="MESSAGE" />
          </children>
       </VBox>
    </children>

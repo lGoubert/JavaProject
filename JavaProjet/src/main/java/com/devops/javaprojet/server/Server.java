@@ -17,6 +17,8 @@ public class Server {
         return port;
     }
 
+    public ConnectedClient getClientById(int id){ return clients.get(id); }
+
     public Server(int port) {
         this.port = port;
         this.clients = new ArrayList<ConnectedClient>();
@@ -26,13 +28,24 @@ public class Server {
 
     public void addClient(ConnectedClient newClient) {
         this.clients.add(newClient);
-        broadcastMessage(new Message(String.valueOf(newClient.getId()), newClient.getId() + " vient de se connecter",1),
-                newClient.getId());
     }
 
+
+    public void announceConnection(ConnectedClient client){
+        broadcastMessage(new Message(client.getName(), " vient de se connecter",201),
+                client.getId());
+    }
     public void broadcastMessage(Message mess, int id) {
         for (ConnectedClient client : clients) {
             if (client.getId() != id) {
+                client.sendMessage(mess);
+            }
+        }
+    }
+
+    public void sendMessageToClientId(Message mess, int id){
+        for (ConnectedClient client : clients) {
+            if (client.getId() == id) {
                 client.sendMessage(mess);
             }
         }
