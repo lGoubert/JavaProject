@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 public class LoginController {
 
     @FXML
-    TextArea statusMessage;
+    TextField statusMessage;
 
     @FXML
     TextField loginUsername;

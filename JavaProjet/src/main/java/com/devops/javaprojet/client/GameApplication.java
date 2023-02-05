@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
@@ -23,8 +24,9 @@ public class GameApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         stage.setTitle("Flagame");
+        stage.getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
         stage.setScene(scene);
         stage.show();
 
@@ -65,8 +67,9 @@ public class GameApplication extends Application {
 
     public static void LoadGameScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         client.getStage().setTitle("Flagame");
+        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
         client.getStage().setScene(scene);
         client.getStage().show();
 
