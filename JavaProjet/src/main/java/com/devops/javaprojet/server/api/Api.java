@@ -21,6 +21,10 @@ public class Api {
     }
 
     public Message Login(String username, String password) throws SQLException {
+        if(username.equals("")){ return new Message("", "Le pseudo ne peut pas être vide", 202); }
+
+        if(password.equals("")){ return new Message("", "Le mot de passe ne peut pas être vide", 202); }
+
         switch (databaseDAO.GetUserInfo(username.toLowerCase(), password)){
             case 0:
                 return new Message("", "L'association username/password est incorrect !", 202);
@@ -32,6 +36,9 @@ public class Api {
     }
 
     public Message Register(String username, String password) throws SQLException, NoSuchAlgorithmException {
+        if(username.equals("")){ return new Message("", "Le pseudo ne peut pas être vide", 204); }
+
+        if(password.equals("")){ return new Message("", "Le mot de passe ne peut pas être vide", 204); }
 
         switch (databaseDAO.GetUser(username.toLowerCase())){
             case 0:
