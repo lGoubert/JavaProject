@@ -52,6 +52,13 @@ public class DatabaseDAO {
         return result;
     }
 
+    public void updateScore(int idUser, int score) throws SQLException {
+        PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO scores (`id`, `id_user`, `score`)VALUES (NULL,?,?);");
+        prepareStatement.setInt(1, idUser);
+        prepareStatement.setInt(2, score);
+        ResultSet result = prepareStatement.executeQuery();
+    }
+
     public void InsertMessage(int idSender, String message) throws SQLException {
         PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO messages (`id`, `id_user`, `message`)VALUES (NULL,?,?);");
         prepareStatement.setInt(1, idSender);
@@ -60,7 +67,7 @@ public class DatabaseDAO {
     }
 
     public ResultSet GetAllMessageByUserID(int idUser) throws SQLException {
-        PreparedStatement prepareStatement = connection.prepareStatement("SELECT message WHERE id_user = ?;");
+        PreparedStatement prepareStatement = connection.prepareStatement("SELECT message FROM messages WHERE id_user = ?;");
         prepareStatement.setInt(1, idUser);
         ResultSet result = prepareStatement.executeQuery();
         result.first();
@@ -75,11 +82,36 @@ public class DatabaseDAO {
     }
 
     public String GetUsernameWithID(int idUser) throws SQLException {
-        PreparedStatement prepareStatement = connection.prepareStatement("SELECT username WHERE id = ?;");
+        PreparedStatement prepareStatement = connection.prepareStatement("SELECT username FROM users WHERE id = ?;");
         prepareStatement.setInt(1, idUser);
         ResultSet result = prepareStatement.executeQuery();
         result.first();
         return result.getString("username");
     }
 
+    public int GetUserInfo(String username, String password) throws SQLException {
+        PreparedStatement prepareStatement = connection.prepareStatement("SELECT id, username FROM users WHERE username = ? AND password= ?");
+        prepareStatement.setString(1, username);
+        prepareStatement.setString(2, password);
+        ResultSet result = prepareStatement.executeQuery();
+        if (result.next() == false) { return 0; }
+        return 1;
+    }
+
+    public int GetUser(String username) throws SQLException {
+        PreparedStatement prepareStatement = connection.prepareStatement("SELECT id, username FROM users WHERE username = ?");
+        prepareStatement.setString(1, username);
+        ResultSet result = prepareStatement.executeQuery();
+        if (result.next() == false) { return 1; }
+        return 0;
+    }
+
+    public int RemoveUser(String username, String password) throws SQLException {
+        PreparedStatement prepareStatement = connection.prepareStatement("DELETE FROM users WHERE username = ? AND password= ?");
+        prepareStatement.setString(1, username);
+        prepareStatement.setString(2, password);
+        ResultSet result = prepareStatement.executeQuery();
+        if (result.next() == false) { return 1; }
+        return 0;
+    }
 }
