@@ -1,5 +1,7 @@
 package com.devops.javaprojet.server.api;
 
+import com.devops.javaprojet.common.Message;
+import com.devops.javaprojet.server.MainServer;
 import com.devops.javaprojet.server.database.DatabaseDAO;
 
 import java.security.NoSuchAlgorithmException;
@@ -18,27 +20,34 @@ public class Api {
         this.databaseDAO = databaseDAO;
     }
 
-    public String Login(String username, String password) throws SQLException {
+    public Message Login(String username, String password) throws SQLException {
+        if(username.equals("")){ return new Message("", "Le pseudo ne peut pas être vide", 202); }
+
+        if(password.equals("")){ return new Message("", "Le mot de passe ne peut pas être vide", 202); }
+
         switch (databaseDAO.GetUserInfo(username.toLowerCase(), password)){
             case 0:
-                return "L'association username/password est incorrect !";
+                return new Message("", "L'association username/password est incorrect !", 202);
             case 1:
-                return "Connexion valide bienvenue " + username + " !";
+                return new Message("", "Connexion valide bienvenue " + username + " !", 203);
             default:
-                return "Erreur lors de la connexion";
+                return new Message("", "Erreur lors de la connexion", 202);
         }
     }
 
-    public String Register(String username, String password) throws SQLException, NoSuchAlgorithmException {
+    public Message Register(String username, String password) throws SQLException, NoSuchAlgorithmException {
+        if(username.equals("")){ return new Message("", "Le pseudo ne peut pas être vide", 204); }
+
+        if(password.equals("")){ return new Message("", "Le mot de passe ne peut pas être vide", 204); }
 
         switch (databaseDAO.GetUser(username.toLowerCase())){
             case 0:
-                return "Le pseudo saisie existe deja";
+                return new Message("", "Le pseudo saisie existe deja", 204);
             case 1:
                 databaseDAO.InsertNewUser(username.toLowerCase(), password);
-                return "Bienvenue " + username + " !";
+                return new Message("", "Bienvenue " + username + " !", 205);
             default:
-                return "Erreur lors de la connexion";
+                return new Message("", "Erreur lors de la connexion", 204);
         }
     }
 

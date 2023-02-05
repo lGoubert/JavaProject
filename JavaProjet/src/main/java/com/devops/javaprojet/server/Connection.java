@@ -18,6 +18,7 @@ public class Connection implements Runnable {
         this.server = server;
         try {
             this.serverSocket = new ServerSocket(server.getPort());
+            serverSocket.setSoTimeout(0);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

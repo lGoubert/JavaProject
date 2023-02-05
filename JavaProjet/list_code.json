@@ -1,0 +1,52 @@
+{
+  "CODE_SERVER": {
+    "CODE": "1XX",
+    "LIST_CODE_SERVER": [
+      {
+        "CODE": 101,
+        "DESCRIPTION": "Code utiliser lors de la reception d'un message"
+      },
+      {
+        "CODE": 102,
+        "DESCRIPTION": "Code utiliser lors d'une connexion"
+      },
+      {
+        "CODE": 103,
+        "DESCRIPTION": "Code utiliser lors d'un enregistrement"
+      },
+      {
+        "CODE": 104,
+        "DESCRIPTION": "Code utiliser pour la reception de la réponse envoyer par le client"
+      }
+    ]
+  },
+  "CODE_CLIENT": {
+    "CODE": "2XX",
+    "LIST_CODE_CLIENT": [
+      {
+        "CODE": 201,
+        "DESCRIPTION": "Code utiliser lors de la reception d'un message"
+      },
+      {
+        "CODE": 202,
+        "DESCRIPTION": "Code utiliser lors d'un echec de connexion"
+      },
+      {
+        "CODE": 203,
+        "DESCRIPTION": "Code utiliser lors d'une connexion réussite "
+      },
+      {
+        "CODE": 204,
+        "DESCRIPTION": "Code utiliser lors d'un echec d'enregistrement"
+      },
+      {
+        "CODE": 205,
+        "DESCRIPTION": "Code utiliser lors d'un enregistrement réussit"
+      },
+      {
+        "CODE": 206,
+        "DESCRIPTION": "Code utiliser lors de l'envoie de l'image du pays"
+      }
+    ]
+  }
+}
