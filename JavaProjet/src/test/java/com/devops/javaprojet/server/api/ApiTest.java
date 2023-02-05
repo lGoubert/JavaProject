@@ -1,5 +1,6 @@
 package com.devops.javaprojet.server.api;
 
+import com.devops.javaprojet.common.Message;
 import com.devops.javaprojet.server.database.Database;
 import com.devops.javaprojet.server.database.DatabaseDAO;
 import org.junit.jupiter.api.Test;
@@ -21,11 +22,12 @@ class ApiTest {
 
     @Test
     void login() throws SQLException {
-        String value = api.Login("Enzo", "password");
-        assertEquals(value,"Connexion valide bienvenue Enzo !");
+
+        Message value = api.Login("Enzo", "password");
+        assertEquals(value.getContent(),"Connexion valide bienvenue Enzo !");
 
         value = api.Login("AZERTY", "QWERTY");
-        assertEquals(value,"L'association username/password est incorrect !");
+        assertEquals(value.getContent(),"L'association username/password est incorrect !");
     }
 
     @Test
@@ -33,14 +35,14 @@ class ApiTest {
         String username = "Unit";
         String password = "Test";
 
-        String value = api.Register(username, password);
-        assertEquals(value,"Bienvenue Unit !");
+        Message value = api.Register(username, password);
+        assertEquals(value.getContent(),"Bienvenue Unit !");
 
         value = api.Login(username, password);
-        assertEquals(value,"Connexion valide bienvenue Unit !");
+        assertEquals(value.getContent(),"Connexion valide bienvenue Unit !");
 
         value = api.Register(username, password);
-        assertEquals(value,"Le pseudo saisie existe deja");
+        assertEquals(value.getContent(),"Le pseudo saisie existe deja");
 
         dataDAO.RemoveUser(username, password);
     }
