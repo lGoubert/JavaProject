@@ -2,12 +2,15 @@ package com.devops.javaprojet.client;
 
 import com.devops.javaprojet.common.Message;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -33,7 +36,14 @@ public class GameApplication extends Application {
         loginController = fxmlLoader.getController();
         client = new Client("localhost", 1234, null, loginController, stage);
 
-
+        //Ferme tout les thread ouvert a la fermeture du programme
+       stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
     }
 
     public static void main(String[] args) {
