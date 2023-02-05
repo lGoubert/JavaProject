@@ -18,14 +18,20 @@
     -fx-opacity: 0.75;
 }
 
-.title{
+.title, .title:focused{
     -fx-background-color: none;
     -fx-font-weight: bold;
     -fx-text-fill: #2f3542;
 }
 
-.text{
+.text, .text:focused{
     -fx-background-color: none;
     -fx-text-fill: #ced6e0;
+    -fx-font-weight: bold;
+}
+
+.error,  .error:focused{
+    -fx-background-color: none;
+    -fx-text-fill: #ff6348;
     -fx-font-weight: bold;
 }

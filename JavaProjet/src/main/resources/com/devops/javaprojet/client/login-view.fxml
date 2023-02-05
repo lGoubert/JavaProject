@@ -25,7 +25,7 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
          <children>
-            <TextField fx:id="statusMessage" alignment="CENTER" text="MESSAGE ICI">
+            <TextField fx:id="statusMessage" alignment="CENTER" focusTraversable="false" styleClass="error" text="MESSAGE ICI">
                <font>
                   <Font size="18.0" />
                </font>
@@ -37,7 +37,7 @@
       </VBox>
       <VBox prefHeight="129.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <TextField alignment="CENTER" editable="false" prefHeight="92.0" prefWidth="437.0" styleClass="title" stylesheets="@style.css" text="FlagGame">
+            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="92.0" prefWidth="437.0" styleClass="title" stylesheets="@style.css" text="FlagGame">
                <font>
                   <Font size="36.0" />
                </font>
@@ -54,7 +54,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField alignment="BOTTOM_LEFT" editable="false" prefHeight="19.0" prefWidth="385.0" styleClass="text" text="Pseudo">
+            <TextField alignment="BOTTOM_LEFT" editable="false" focusTraversable="false" prefHeight="19.0" prefWidth="385.0" styleClass="text" text="Pseudo">
                <font>
                   <Font size="16.0" />
                </font>
@@ -66,7 +66,7 @@
                <VBox.margin>
                   <Insets top="-8.0" />
                </VBox.margin></TextField>
-            <TextField alignment="BOTTOM_LEFT" editable="false" prefHeight="19.0" prefWidth="385.0" styleClass="text" text="Mot de passe">
+            <TextField alignment="BOTTOM_LEFT" editable="false" focusTraversable="false" prefHeight="19.0" prefWidth="385.0" styleClass="text" text="Mot de passe">
                <font>
                   <Font size="16.0" />
                </font>
@@ -86,12 +86,12 @@
       </VBox>
       <VBox layoutX="210.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0" styleClass="box" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <TextField alignment="TOP_CENTER" editable="false" styleClass="text" text="Créer un compte">
+            <TextField alignment="TOP_CENTER" editable="false" focusTraversable="false" styleClass="text" text="Créer un compte">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField alignment="BOTTOM_LEFT" editable="false" prefHeight="19.0" prefWidth="385.0" styleClass="text" text="Pseudo">
+            <TextField alignment="BOTTOM_LEFT" editable="false" focusTraversable="false" prefHeight="19.0" prefWidth="385.0" styleClass="text" text="Pseudo">
                <font>
                   <Font size="16.0" />
                </font>
@@ -103,7 +103,7 @@
                <VBox.margin>
                   <Insets top="-8.0" />
                </VBox.margin></TextField>
-            <TextField alignment="BOTTOM_LEFT" editable="false" prefHeight="19.0" prefWidth="385.0" styleClass="text" text="Mot de passe">
+            <TextField alignment="BOTTOM_LEFT" editable="false" focusTraversable="false" prefHeight="19.0" prefWidth="385.0" styleClass="text" text="Mot de passe">
                <font>
                   <Font size="16.0" />
                </font>

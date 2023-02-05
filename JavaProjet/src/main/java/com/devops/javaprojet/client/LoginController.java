@@ -55,7 +55,6 @@ public class LoginController {
             GameApplication.Register(username, password);
     }
 
-
     public void showStatus(String status){
         statusMessage.setText(status);
         statusMessage.setVisible(true);
