@@ -1,0 +1,39 @@
+/* https://flatuicolors.com/palette/cn */
+
+.background{
+    -fx-background-image: url("background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.box-chat{
+    -fx-hgap: 8px;
+    -fx-padding: 16px;
+    -fx-background-radius: 32px;
+    -fx-background-color: rgba(47, 53, 66, 0.75);
+}
+
+.flag{
+
+}
+
+.box-game{
+    -fx-hgap: 8px;
+    -fx-padding: 16px;
+    -fx-background-radius: 32px 0px 0px 32px;
+    -fx-background-color: rgba(47, 53, 66, 0.75);
+}
+
+.text, .text:focused{
+    -fx-background-color: #747d8c;
+    -fx-text-fill: #ced6e0;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.chat, .chat:focused{
+    -fx-text-fill: #ced6e0;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}

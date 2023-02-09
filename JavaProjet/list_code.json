@@ -1,6 +1,7 @@
 {
   "CODE_SERVER": {
     "CODE": "1XX",
+    "DESC": "Code pour les messages envoyer par les clients vers le serveur",
     "LIST_CODE_SERVER": [
       {
         "CODE": 101,
@@ -22,6 +23,7 @@
   },
   "CODE_CLIENT": {
     "CODE": "2XX",
+    "DESC": "Code pour les messages envoyer par le server vers les clients",
     "LIST_CODE_CLIENT": [
       {
         "CODE": 201,

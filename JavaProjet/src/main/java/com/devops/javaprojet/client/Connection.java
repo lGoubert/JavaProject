@@ -3,12 +3,14 @@ package com.devops.javaprojet.client;
 import com.devops.javaprojet.common.Message;
 import com.devops.javaprojet.server.MainServer;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
 import java.io.*;
 import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.regex.Pattern;
 
 public class Connection implements Runnable {
@@ -72,6 +74,10 @@ public class Connection implements Runnable {
                         });
                         break;
                     case 206:
+                        Platform.runLater(() -> {
+                            String data = "data:image/png;base64," + userInput.getContent();
+                            //gameController.getImageView().setImage();
+                        });
                         break;
                     default:
                         break;

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1024.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.LoginController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1024.0" styleClass="background" stylesheets="@login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.LoginController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="557.0" minWidth="10.0" prefWidth="295.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="593.0" minWidth="10.0" prefWidth="435.0" />
@@ -35,9 +35,9 @@
             </TextField>
          </children>
       </VBox>
-      <VBox prefHeight="129.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox prefHeight="66.0" prefWidth="435.0" styleClass="title-box" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="92.0" prefWidth="437.0" styleClass="title" stylesheets="@style.css" text="FlagGame">
+            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="92.0" prefWidth="437.0" styleClass="title" stylesheets="@login.css" text="FlagGame">
                <font>
                   <Font size="36.0" />
                </font>
@@ -47,7 +47,7 @@
             <Insets />
          </GridPane.margin>
       </VBox>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="289.0" prefWidth="435.0" styleClass="box" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="289.0" prefWidth="435.0" styleClass="box" stylesheets="@login.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
             <TextField alignment="TOP_CENTER" editable="false" styleClass="text" text="Connexion">
                <font>
@@ -62,7 +62,7 @@
                   <Insets left="-8.0" top="16.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="loginUsername">
+            <TextField fx:id="loginUsername" styleClass="input">
                <VBox.margin>
                   <Insets top="-8.0" />
                </VBox.margin></TextField>
@@ -74,7 +74,7 @@
                   <Insets left="-8.0" top="16.0" />
                </VBox.margin>
             </TextField>
-            <PasswordField fx:id="loginPassword">
+            <PasswordField fx:id="loginPassword" styleClass="input">
                <VBox.margin>
                   <Insets top="-8.0" />
                </VBox.margin></PasswordField>
@@ -84,7 +84,7 @@
                </VBox.margin></Button>
          </children>
       </VBox>
-      <VBox layoutX="210.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0" styleClass="box" stylesheets="@style.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <VBox layoutX="210.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0" styleClass="box" stylesheets="@login.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
             <TextField alignment="TOP_CENTER" editable="false" focusTraversable="false" styleClass="text" text="Créer un compte">
                <font>
@@ -99,7 +99,7 @@
                   <Insets left="-8.0" top="16.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="registerUsername">
+            <TextField fx:id="registerUsername" styleClass="input">
                <VBox.margin>
                   <Insets top="-8.0" />
                </VBox.margin></TextField>
@@ -111,7 +111,7 @@
                   <Insets left="-8.0" top="16.0" />
                </VBox.margin>
             </TextField>
-            <PasswordField fx:id="registerPassword">
+            <PasswordField fx:id="registerPassword" styleClass="input">
                <VBox.margin>
                   <Insets top="-8.0" />
                </VBox.margin></PasswordField>
