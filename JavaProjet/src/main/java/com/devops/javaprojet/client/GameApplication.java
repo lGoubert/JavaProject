@@ -65,6 +65,16 @@ public class GameApplication extends Application {
         }
     }
 
+    public static void SendingResponse(KeyEvent event, GameController gameController) throws IOException {
+        if (KeyCode.ENTER == event.getCode()) {
+            Message messageToServer = new Message("", gameController.getImageText().getText(), 104);
+            client.getConnection().getOut().writeObject(messageToServer);
+            client.getConnection().getOut().flush();
+
+            gameController.getImageText().setText("");
+        }
+    }
+
     public static void LoadGameScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
@@ -81,6 +91,16 @@ public class GameApplication extends Application {
             gameController.getChatText().setOnKeyPressed(event -> {
                 try {
                     SendingMessage(event, gameController);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+
+        if (fxmlLoader.getController() instanceof GameController gameController) {
+            gameController.getImageText().setOnKeyPressed(event -> {
+                try {
+                    SendingResponse(event, gameController);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.GameController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="728.0" prefWidth="1024.0" styleClass="background" stylesheets="@game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.GameController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <TextField fx:id="chatText" layoutX="347.0" layoutY="360.0" prefHeight="26.0" prefWidth="223.0" promptText="Ecrivez un message..." />
-      <TextFlow fx:id="chatFlow" layoutX="347.0" layoutY="141.0" prefHeight="212.0" prefWidth="223.0" />
+      <VBox alignment="BOTTOM_CENTER" prefHeight="244.0" prefWidth="356.0" styleClass="box-game" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="b">
+               <children>
+                  <ImageView fx:id="imageView" fitHeight="512.0" fitWidth="512.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1000;">
+                     <image>
+                        <Image url="@france.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <TextField fx:id="imageText" prefHeight="26.0" prefWidth="223.0" promptText="Ecrivez un message..." styleClass="text" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="box-chat" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowSpan="4">
+         <children>
+            <TextFlow fx:id="chatFlow" prefHeight="672.0" prefWidth="280.0" styleClass="chat" />
+            <TextField fx:id="chatText" prefHeight="26.0" prefWidth="223.0" promptText="Ecrivez un message..." styleClass="text" />
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</GridPane>
