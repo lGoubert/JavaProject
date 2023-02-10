@@ -4,6 +4,7 @@ module com.devops.javaprojet {
     requires java.naming;
     requires org.mariadb.jdbc;
     requires java.sql;
+    requires java.desktop;
 
 
     exports com.devops.javaprojet.client;
