@@ -6,8 +6,14 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Base64;
@@ -75,8 +81,24 @@ public class Connection implements Runnable {
                         break;
                     case 206:
                         Platform.runLater(() -> {
-                            String data = "data:image/png;base64," + userInput.getContent();
-                            //gameController.getImageView().setImage();
+                            try {
+                                String imageData = "data:image/png;base64," + userInput.getContent();
+                                String base64Data = imageData.split(",")[1];
+
+                                byte[] decodedBytes = Base64.getDecoder().decode(base64Data);
+                                ByteArrayInputStream bis = new ByteArrayInputStream(decodedBytes);
+                                BufferedImage Bufferedimage = ImageIO.read(bis);
+
+                                File outputFile = new File("output.png");
+                                ImageIO.write(Bufferedimage, "png", outputFile);
+
+                                File file = new File("output.png");
+                                Image image = new Image(file.toURI().toString());
+
+                                gameController.getImageView().setImage(image);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         });
                         break;
                     default:
