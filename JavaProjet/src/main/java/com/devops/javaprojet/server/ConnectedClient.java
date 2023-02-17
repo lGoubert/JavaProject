@@ -75,7 +75,8 @@ public class ConnectedClient implements Runnable {
                                 mess.setType(201);
                                 mess.setContent(mess.getContent());
                                 server.broadcastMessage(mess, id);
-                                System.out.println(mess.getContent());
+                                System.out.println(mess.getSender() + ": " + mess.getContent());
+                                MainServer.api.LogMessage(mess.getSender(), mess.getContent());
                                 break;
                             case 102: //Login
                                 System.out.println(mess.getContent());
@@ -137,6 +138,8 @@ public class ConnectedClient implements Runnable {
                 //e.printStackTrace();
                 isActive = false;
                 System.out.println("Un client viens de se déconnecter");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
 
         }

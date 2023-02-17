@@ -75,7 +75,7 @@ public class Api {
         }
         return map;
         /*
-          map['flag']
+          map.get("flag")
          */
     }
 
