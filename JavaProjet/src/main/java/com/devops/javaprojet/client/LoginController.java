@@ -59,6 +59,7 @@ public class LoginController {
     }
 
     @FXML public void scoreButtonHandle() throws IOException {
+        GameApplication.LoadScoreScene();
     }
 
     public void showStatus(String status){

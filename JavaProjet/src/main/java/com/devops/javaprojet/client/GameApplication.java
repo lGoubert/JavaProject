@@ -20,6 +20,7 @@ public class GameApplication extends Application {
     private static Client client;
     private static GameController gameController;
     private static LoginController loginController;
+    private static ScoreboardController scoreboardController;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -36,7 +37,7 @@ public class GameApplication extends Application {
         */
 
         loginController = fxmlLoader.getController();
-        client = new Client("localhost", 1234, null, loginController, stage);
+        client = new Client("localhost", 1234, null, loginController, null, stage);
 
         //Ferme tout les thread ouvert a la fermeture du programme
        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -75,6 +76,36 @@ public class GameApplication extends Application {
         }
     }
 
+    public static void LoadScoreScene() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("scoreboard-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
+        client.getStage().setTitle("Flagame");
+        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        client.getStage().setScene(scene);
+        client.getStage().show();
+
+        client.setGameController(null);
+        client.setLoginController(null);
+        client.setScoreboardController(fxmlLoader.getController());
+
+        Message messageToServer = new Message("","",105);
+        client.getConnection().getOut().writeObject(messageToServer);
+        client.getConnection().getOut().flush();
+    }
+
+    public static void LoadMainScene() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
+        client.getStage().setTitle("Flagame");
+        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        client.getStage().setScene(scene);
+        client.getStage().show();
+
+        client.setGameController(null);
+        client.setLoginController(fxmlLoader.getController());
+        client.setScoreboardController(null);
+    }
+
     public static void LoadGameScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
@@ -85,6 +116,7 @@ public class GameApplication extends Application {
 
         client.setGameController(fxmlLoader.getController());
         client.setLoginController(null);
+        client.setScoreboardController(null);
 
         //Event lorsque l'utilisateur appuie sur Entry
         if (fxmlLoader.getController() instanceof GameController gameController) {

@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@scoreboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@scoreboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.ScoreboardController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="145.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="118.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.0" minWidth="10.0" prefWidth="321.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="490.0" minWidth="10.0" prefWidth="340.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="648.0" minWidth="10.0" prefWidth="539.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -20,20 +20,20 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="background" GridPane.columnSpan="3" GridPane.rowSpan="3" />
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowSpan="3">
+      <VBox prefHeight="768.0" prefWidth="997.0" styleClass="background" GridPane.columnSpan="3" GridPane.rowSpan="3" />
+      <VBox prefHeight="768.0" prefWidth="222.0" GridPane.columnSpan="2" GridPane.rowSpan="3">
          <children>
-            <TableView fx:id="tableScore" prefHeight="403.0" prefWidth="271.0" styleClass="box">
+            <TableView fx:id="tableScore" prefHeight="768.0" prefWidth="438.0" styleClass="box">
               <columns>
-                <TableColumn fx:id="scoreName" editable="false" prefWidth="150.0" text="Nom" />
-                <TableColumn fx:id="ScoreValue" editable="false" prefWidth="118.0" text="Score" />
+                <TableColumn fx:id="scoreName" editable="false" prefWidth="321.0" text="Nom" />
+                <TableColumn fx:id="scoreValue" editable="false" prefWidth="135.0" text="Score" />
               </columns>
             </TableView>
          </children>
       </VBox>
       <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="backButton" mnemonicParsing="false" styleClass="input" text="Retour au menu principal" />
+            <Button fx:id="backButton" mnemonicParsing="false" styleClass="input" text="Retour au menu principal" onAction="#backButtonHandle" />
          </children>
       </VBox>
    </children>
