@@ -90,4 +90,10 @@ public class Api {
     public void AddScore(int idUser, int score) throws SQLException {
         databaseDAO.updateScore(idUser, score);
     }
+
+    public void AddScore(String username, int score) throws SQLException {
+        int id = getIdUser(username);
+        databaseDAO.updateScore(id, score);
+    }
 }
+
