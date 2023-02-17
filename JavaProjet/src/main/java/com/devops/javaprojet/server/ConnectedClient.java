@@ -112,6 +112,10 @@ public class ConnectedClient implements Runnable {
                                 }
                                 break;
                             case 104: //Response
+                                /*To DO
+                                    Recupere le message content et le comparer avec le nom du pays actuel
+                                    revoyer une image en 206 si la réponse est trouver (broadcast)
+                                 */
                                 System.out.println(mess.getContent());
                                 break;
 

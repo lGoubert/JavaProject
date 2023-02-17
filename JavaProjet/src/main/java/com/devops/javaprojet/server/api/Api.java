@@ -53,6 +53,15 @@ public class Api {
 
     public void LogMessage(int idUser, String message) throws SQLException { databaseDAO.InsertMessage(idUser, message); }
 
+    public void LogMessage(String username, String message) throws SQLException {
+        int id = getIdUser(username);
+        databaseDAO.InsertMessage(id, message);
+    }
+
+    public int getIdUser(String username) throws SQLException {
+        return databaseDAO.GetUserID(username);
+    }
+
     public Map<String, String> GetInfoCountryRandom() throws SQLException {
         Map<String, String> map = new HashMap<>();
         ResultSet result = databaseDAO.GetAllCountries();
@@ -65,6 +74,9 @@ public class Api {
             map.put(data.getColumnName(i), result.getString(i));
         }
         return map;
+        /*
+          map['flag']
+         */
     }
 
     public Map<String, String> GetInfoCountry(int idCountry) throws SQLException {
