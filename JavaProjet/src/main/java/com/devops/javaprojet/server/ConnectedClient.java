@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.nio.charset.MalformedInputException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.Normalizer;
@@ -95,6 +96,10 @@ public class ConnectedClient implements Runnable {
                                 }catch (SQLException e) {
                                     throw new RuntimeException(e);
                                 }
+
+                                Message messageSendActualFlag = new Message("server", MainServer.flagMap.get("flag"), 206);
+                                server.broadcastMessage(messageSendActualFlag, -1);
+                                System.out.println("Envoi du drapeau actuel.");
                                 break;
                             case 103: //Register
                                 System.out.println(mess.getContent());
@@ -115,11 +120,6 @@ public class ConnectedClient implements Runnable {
                                 }
                                 break;
                             case 104: //Response
-                                /*To DO
-                                    Recupere le message content et le comparer avec le nom du pays actuel
-                                    revoyer une image en 206 si la réponse est trouver (broadcast)
-                                 */
-
                                 String clientAnswer = Normalizer.normalize(mess.getContent(), Normalizer.Form.NFD)
                                     .replaceAll("\\p{M}", "")
                                     .replaceAll("[^\\p{ASCII}]", "");
