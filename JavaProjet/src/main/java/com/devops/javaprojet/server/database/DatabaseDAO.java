@@ -98,12 +98,12 @@ public class DatabaseDAO {
         return 1;
     }
 
-    public int GetUserID(String username) throws SQLException {
-        PreparedStatement prepareStatement = connection.prepareStatement("SELECT id FROM users WHERE username = ? ");
-        prepareStatement.setString(1, username);
+    public String GetUserWithID(int id) throws SQLException {
+        PreparedStatement prepareStatement = connection.prepareStatement("SELECT username FROM users WHERE id = ? ");
+        prepareStatement.setInt(1, id);
         ResultSet result = prepareStatement.executeQuery();
-        if (result.next() == false) { return 0; }
-        return result.getInt("id");
+        if (result.next() == false) { return ""; }
+        return result.getString("username");
     }
 
     public int GetUser(String username) throws SQLException {

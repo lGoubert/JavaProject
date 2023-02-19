@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class ConnectedClient implements Runnable {
@@ -117,6 +118,15 @@ public class ConnectedClient implements Runnable {
                                     Recupere le message content et le comparer avec le nom du pays actuel
                                     revoyer une image en 206 si la réponse est trouver (broadcast)
                                  */
+                                System.out.println(mess.getContent());
+                                break;
+                            case 105: //Scoreboard
+                                ArrayList<String> scores = MainServer.api.GetScoreboard();
+                                for (String score: scores) {
+                                    System.out.println(score);
+                                    Message message = new Message("", score, 207);
+                                    server.sendMessageToClientId(message, id);
+                                }
                                 System.out.println(mess.getContent());
                                 break;
 
