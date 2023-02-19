@@ -53,7 +53,7 @@ public class DatabaseDAO {
     }
 
     public void updateScore(int idUser, int score) throws SQLException {
-        PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO scores (`id`, `id_user`, `score`)VALUES (NULL,?,?);");
+        PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO games_scores (`id`, `id_user`, `score`)VALUES (NULL,?,?);");
         prepareStatement.setInt(1, idUser);
         prepareStatement.setInt(2, score);
         ResultSet result = prepareStatement.executeQuery();

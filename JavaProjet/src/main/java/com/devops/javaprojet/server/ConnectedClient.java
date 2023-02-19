@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.nio.charset.MalformedInputException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -63,6 +65,7 @@ public class ConnectedClient implements Runnable {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
         boolean isActive = true;
         while (isActive) {
             Message mess;
@@ -94,6 +97,10 @@ public class ConnectedClient implements Runnable {
                                 }catch (SQLException e) {
                                     throw new RuntimeException(e);
                                 }
+
+                                Message messageSendActualFlag = new Message("server", MainServer.flagMap.get("flag"), 206);
+                                server.broadcastMessage(messageSendActualFlag, -1);
+                                System.out.println("Envoi du drapeau actuel.");
                                 break;
                             case 103: //Register
                                 System.out.println(mess.getContent());
@@ -114,11 +121,33 @@ public class ConnectedClient implements Runnable {
                                 }
                                 break;
                             case 104: //Response
-                                /*To DO
-                                    Recupere le message content et le comparer avec le nom du pays actuel
-                                    revoyer une image en 206 si la réponse est trouver (broadcast)
-                                 */
-                                System.out.println(mess.getContent());
+                                String clientAnswer = Normalizer.normalize(mess.getContent(), Normalizer.Form.NFD)
+                                    .replaceAll("\\p{M}", "")
+                                    .replaceAll("[^\\p{ASCII}]", "");
+
+                                System.out.println(client.getName() + " a proposé " + clientAnswer + "(corrigé en : " + clientAnswer + ")");
+                                Message messageProposition = new Message("PROPOSITION",client.getName() + " a proposé " +  mess.getContent(),201);
+                                server.broadcastMessage(messageProposition, -1);
+
+                                if (clientAnswer.toLowerCase().equals(MainServer.flagMap.get("country").toLowerCase())){
+                                    int score = Integer.parseInt(MainServer.flagMap.get("difficulty"));
+
+                                    Message messageGoodAnswser = new Message("BONNE REPONSE",client.getName() + " a trouvé la bonne réponse et marque " +  score + " point(s).",201);
+                                    server.broadcastMessage(messageGoodAnswser, -1);
+                                    System.out.println(mess.getContent());
+
+                                    try {
+                                        MainServer.api.AddScore(MainServer.api.getIdUser(client.getName()), score);
+                                        MainServer.flagMap = MainServer.api.GetInfoCountryRandom();
+                                        System.out.println("Nouvelle réponse: " + MainServer.flagMap.get("country"));
+                                    } catch (SQLException e) {
+                                        throw new RuntimeException(e);
+                                    }
+
+                                    Message messageSendFlag = new Message("server",MainServer.flagMap.get("flag"),206);
+                                    server.broadcastMessage(messageSendFlag, -1);
+                                    System.out.println("Envoie du nouveau drapeau.");
+                                }
                                 break;
                             case 105: //Scoreboard
                                 ArrayList<String> scores = MainServer.api.GetScoreboard();
@@ -147,7 +176,7 @@ public class ConnectedClient implements Runnable {
                 // TODO Auto-generated catch block
                 //e.printStackTrace();
                 isActive = false;
-                System.out.println("Un client viens de se déconnecter");
+                System.out.println("Un client vient de se déconnecter");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
