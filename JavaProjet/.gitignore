@@ -40,3 +40,6 @@ build/
 
 ### Idea ###
 .idea/
+
+### output.png ###
+../output.png

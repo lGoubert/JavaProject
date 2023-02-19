@@ -110,8 +110,8 @@ public class DatabaseDAO {
         PreparedStatement prepareStatement = connection.prepareStatement("SELECT id, username FROM users WHERE username = ?");
         prepareStatement.setString(1, username);
         ResultSet result = prepareStatement.executeQuery();
-        if (result.next() == false) { return 1; }
-        return 0;
+        if (result.next() == false) { return -1; }
+        return result.getInt("id");
     }
 
     public int RemoveUser(String username, String password) throws SQLException {
