@@ -9,6 +9,7 @@ import java.nio.charset.MalformedInputException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class ConnectedClient implements Runnable {
@@ -147,6 +148,15 @@ public class ConnectedClient implements Runnable {
                                     server.broadcastMessage(messageSendFlag, -1);
                                     System.out.println("Envoie du nouveau drapeau.");
                                 }
+                                break;
+                            case 105: //Scoreboard
+                                ArrayList<String> scores = MainServer.api.GetScoreboard();
+                                for (String score: scores) {
+                                    System.out.println(score);
+                                    Message message = new Message("", score, 207);
+                                    server.sendMessageToClientId(message, id);
+                                }
+                                System.out.println(mess.getContent());
                                 break;
 
                             default:

@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.regex.Pattern;
 
@@ -23,6 +24,8 @@ public class Connection implements Runnable {
     public void setGameController(GameController gameController) { this.gameController = gameController; }
 
     public void setLoginController(LoginController loginController) { this.loginController = loginController; }
+
+    public void setScoreboardController(ScoreboardController scoreboardController) { this.scoreboardController = scoreboardController; }
 
     public Socket getSocket() { return socket; }
 
@@ -38,13 +41,16 @@ public class Connection implements Runnable {
 
     private LoginController loginController;
 
+    private ScoreboardController scoreboardController;
+
     private ObjectOutputStream out;
 
-    public Connection(Client client, Socket socket, GameController gameController, LoginController loginController) {
+    public Connection(Client client, Socket socket, GameController gameController, LoginController loginController, ScoreboardController scoreboardController) {
         this.client = client;
         this.socket = socket;
         this.gameController = gameController;
         this.loginController = loginController;
+        this.scoreboardController = scoreboardController;
     }
 
     public void run() {
@@ -99,6 +105,18 @@ public class Connection implements Runnable {
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
+                        });
+                        break;
+                    case 207:
+
+                        String input = userInput.getContent();
+                        System.out.println(input);
+                        int index = input.indexOf("|");
+                        String name = input.substring(0, index);
+                        String value = input.replace(name + "|", "");
+                        Score score = new Score(name, value);
+                        Platform.runLater(() -> {
+                            scoreboardController.addScore(score);
                         });
                         break;
                     default:

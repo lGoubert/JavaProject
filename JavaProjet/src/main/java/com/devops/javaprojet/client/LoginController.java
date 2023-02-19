@@ -30,6 +30,9 @@ public class LoginController {
     @FXML
     Button registerButton;
 
+    @FXML
+    Button buttonScore;
+
     public void initialize(){
         statusMessage.setText("");
         statusMessage.setVisible(false);
@@ -53,6 +56,10 @@ public class LoginController {
             String password = registerPassword.getText().replace("|", "");
             System.out.println(username + "|" + password);
             GameApplication.Register(username, password);
+    }
+
+    @FXML public void scoreButtonHandle() throws IOException {
+        GameApplication.LoadScoreScene();
     }
 
     public void showStatus(String status){

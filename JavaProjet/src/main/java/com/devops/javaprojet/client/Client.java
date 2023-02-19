@@ -18,6 +18,11 @@ public class Client {
         this.loginController = loginController;
     }
 
+    public void setScoreboardController(ScoreboardController scoreboardController) {
+        connection.setScoreboardController(scoreboardController);
+        this.scoreboardController = scoreboardController;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -40,17 +45,20 @@ public class Client {
     private GameController gameController;
     private LoginController loginController;
 
+    private ScoreboardController scoreboardController;
+
     private Stage stage;
-    public Client(String address, int port, GameController gameController, LoginController loginController, Stage stage) {
+    public Client(String address, int port, GameController gameController, LoginController loginController, ScoreboardController scoreboardController, Stage stage) {
         this.address = address;
         this.port = port;
         this.gameController = gameController;
         this.loginController = loginController;
+        this.scoreboardController = scoreboardController;
         this.stage = stage;
 
         try {
             socket = new Socket(address, port);
-            connection = new Connection(this, socket, gameController, loginController);
+            connection = new Connection(this, socket, gameController, loginController, scoreboardController);
             Thread connectionThread = new Thread(connection);
             connectionThread.start();
 

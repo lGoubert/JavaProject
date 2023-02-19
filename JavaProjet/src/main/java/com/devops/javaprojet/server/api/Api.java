@@ -59,7 +59,7 @@ public class Api {
     }
 
     public int getIdUser(String username) throws SQLException {
-        return databaseDAO.GetUserID(username);
+        return databaseDAO.GetUser(username);
     }
 
     public Map<String, String> GetInfoCountryRandom() throws SQLException {
@@ -94,6 +94,18 @@ public class Api {
     public void AddScore(String username, int score) throws SQLException {
         int id = getIdUser(username);
         databaseDAO.updateScore(id, score);
+    }
+
+    public ArrayList<String> GetScoreboard() throws SQLException {
+        ArrayList<String> scores = new ArrayList<String>();
+        ResultSet result = databaseDAO.GetScoreboard();
+        while (result.next()) {
+            int id = result.getInt("id_user");
+            String user = databaseDAO.GetUserWithID(id);
+            int score = result.getInt("Scoreboard");
+            scores.add(user + "|" + score);
+        }
+        return scores;
     }
 }
 

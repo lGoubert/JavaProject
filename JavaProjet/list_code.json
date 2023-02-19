@@ -18,6 +18,10 @@
       {
         "CODE": 104,
         "DESCRIPTION": "Code utiliser pour la reception de la réponse envoyer par le client"
+      },
+      {
+        "CODE": 105,
+        "DESCRIPTION": "Code utiliser pour demander le scoreboard"
       }
     ]
   },
@@ -48,6 +52,10 @@
       {
         "CODE": 206,
         "DESCRIPTION": "Code utiliser lors de l'envoie de l'image du pays"
+      },
+      {
+        "CODE": 207,
+        "DESCRIPTION": "Code utiliser pour recevoir le scoreboard"
       }
     ]
   }

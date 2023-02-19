@@ -1,0 +1,23 @@
+
+.background{
+    -fx-background-image: url("background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.input{
+    -fx-background-color: #747d8c;
+    -fx-text-fill: #ced6e0;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.box{
+    -fx-hgap: 8px;
+    -fx-padding: 16px;
+    -fx-background-color: #2f3542;
+    -fx-background-radius: 0px 32px 32px 0px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+    -fx-opacity: 0.75;
+}

@@ -124,5 +124,10 @@
             <Insets bottom="32.0" top="32.0" />
          </GridPane.margin>
       </VBox>
+      <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <children>
+            <Button fx:id="buttonScore" mnemonicParsing="false" onAction="#scoreButtonHandle" styleClass="input" text="Scoreboard" />
+         </children>
+      </VBox>
    </children>
 </GridPane>
