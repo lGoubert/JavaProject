@@ -27,7 +27,8 @@ public class GameApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         stage.setTitle("Flagame");
-        stage.getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        Image icon = new Image(getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
+        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
 
@@ -80,7 +81,8 @@ public class GameApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("scoreboard-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         client.getStage().setTitle("Flagame");
-        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        Image icon = new Image(client.getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
+        client.getStage().getIcons().add(icon);
         client.getStage().setScene(scene);
         client.getStage().show();
 
@@ -97,7 +99,8 @@ public class GameApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         client.getStage().setTitle("Flagame");
-        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        Image icon = new Image(client.getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
+        client.getStage().getIcons().add(icon);
         client.getStage().setScene(scene);
         client.getStage().show();
 
@@ -110,7 +113,8 @@ public class GameApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         client.getStage().setTitle("Flagame");
-        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        Image icon = new Image(client.getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
+        client.getStage().getIcons().add(icon);
         client.getStage().setScene(scene);
         client.getStage().show();
 
