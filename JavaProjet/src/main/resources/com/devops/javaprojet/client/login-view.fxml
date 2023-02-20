@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1024.0" styleClass="background" stylesheets="@login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.LoginController">
   <columnConstraints>
@@ -35,17 +37,14 @@
             </TextField>
          </children>
       </VBox>
-      <VBox prefHeight="66.0" prefWidth="435.0" styleClass="title-box" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox alignment="CENTER" prefHeight="66.0" prefWidth="435.0" padding="10 20 10 20" styleClass="title-box" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="92.0" prefWidth="437.0" styleClass="title" stylesheets="@login.css" text="FlagGame">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </TextField>
+            <ImageView fx:id="imageOrangeLogo" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1000;">
+               <image>
+                  <Image url="@icon.png" />
+               </image>
+            </ImageView>
          </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
       </VBox>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="289.0" prefWidth="435.0" styleClass="box" stylesheets="@login.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>

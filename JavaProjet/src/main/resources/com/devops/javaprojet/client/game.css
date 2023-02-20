@@ -2,7 +2,7 @@
 
 .background{
     -fx-background-image: url("background.png");
-    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
@@ -33,7 +33,12 @@
 }
 
 .chat, .chat:focused{
-    -fx-text-fill: #ced6e0;
+}
+
+.chat > Text {
+    -fx-text-fill: white;
+    -fx-font-family: "Lato";
+    -fx-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 12px;
 }

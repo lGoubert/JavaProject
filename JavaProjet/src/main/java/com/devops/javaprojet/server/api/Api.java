@@ -29,7 +29,7 @@ public class Api {
             case 0:
                 return new Message("", "L'association username/password est incorrect !", 202);
             case 1:
-                return new Message("", "Connexion valide bienvenue " + username + " !", 203);
+                return new Message("", "Connexion valide. Bienvenue " + username + " !", 203);
             default:
                 return new Message("", "Erreur lors de la connexion", 202);
         }
