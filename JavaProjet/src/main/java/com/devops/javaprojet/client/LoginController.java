@@ -29,7 +29,6 @@ public class LoginController {
     PasswordField registerPassword;
     @FXML
     Button registerButton;
-
     @FXML
     Button buttonScore;
 

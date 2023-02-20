@@ -37,7 +37,7 @@
             </TextField>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="66.0" prefWidth="435.0" padding="10 20 10 20" styleClass="title-box" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox alignment="CENTER" prefHeight="66.0" prefWidth="435.0" styleClass="title-box" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <ImageView fx:id="imageOrangeLogo" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1000;">
                <image>

@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -21,6 +22,7 @@ public class GameApplication extends Application {
     private static GameController gameController;
     private static LoginController loginController;
     private static ScoreboardController scoreboardController;
+    private static String LastProposition;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -64,6 +66,8 @@ public class GameApplication extends Application {
             client.getConnection().getOut().flush();
 
             gameController.getChatText().setText("");
+
+            keepLastMessages(gameController.getChatFlow());
         }
     }
 
@@ -73,6 +77,14 @@ public class GameApplication extends Application {
             client.getConnection().getOut().writeObject(messageToServer);
             client.getConnection().getOut().flush();
 
+            LastProposition = gameController.getImageText().getText();
+            gameController.getImageText().setText("");
+            keepLastMessages(gameController.getChatFlow());
+        }
+        else if (KeyCode.UP == event.getCode()){
+            gameController.getImageText().setText(LastProposition);
+        }
+        else if (KeyCode.DOWN == event.getCode()){
             gameController.getImageText().setText("");
         }
     }
@@ -154,5 +166,16 @@ public class GameApplication extends Application {
         Message messageToServer = new Message("",username + "|" + password,102);
         client.getConnection().getOut().writeObject(messageToServer);
         client.getConnection().getOut().flush();
+    }
+
+    public static void keepLastMessages(TextFlow textFlow) {
+        // Compter le nombre de lignes dans le TextFlow
+        int numLines = textFlow.getChildren().size();
+
+        // Supprimer les lignes les plus anciennes si nécessaire
+        if (numLines > 30) {
+            int numLinesToRemove = numLines - 25;
+            textFlow.getChildren().remove(0, numLinesToRemove);
+        }
     }
 }

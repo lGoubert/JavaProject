@@ -7,7 +7,7 @@
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 
-.box{
+.box, .box:focused{
     -fx-hgap: 8px;
     -fx-padding: 16px;
     -fx-background-color: #2f3542;
@@ -16,7 +16,7 @@
     -fx-opacity: 0.75;
 }
 
-.title-box{
+.title-box, .title-box:focused{
     -fx-max-height: 16px;
     -fx-background-color: #2f3542;
     -fx-background-radius: 32px;
@@ -36,7 +36,7 @@
     -fx-font-weight: bold;
 }
 
-.error,  .error:focused{
+.error, .error:focused{
     -fx-background-color: none;
     -fx-text-fill: #ff6348;
     -fx-font-weight: bold;
@@ -48,3 +48,5 @@
     -fx-font-weight: bold;
     -fx-font-size: 12px;
 }
+
+
