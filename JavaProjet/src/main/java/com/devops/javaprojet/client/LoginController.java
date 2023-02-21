@@ -35,6 +35,7 @@ public class LoginController {
     public void initialize(){
         statusMessage.setText("");
         statusMessage.setVisible(false);
+        loginUsername.requestFocus();
     }
 
     //Button login
