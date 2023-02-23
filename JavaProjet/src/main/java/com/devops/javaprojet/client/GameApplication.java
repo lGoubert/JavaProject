@@ -171,7 +171,7 @@ public class GameApplication extends Application {
 
         // Supprimer les lignes les plus anciennes si nécessaire
         if (numLines > 30) {
-            int numLinesToRemove = numLines - 25;
+            int numLinesToRemove = numLines - 20;
             textFlow.getChildren().remove(0, numLinesToRemove);
         }
     }
