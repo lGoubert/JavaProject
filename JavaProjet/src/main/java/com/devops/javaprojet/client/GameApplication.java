@@ -23,6 +23,7 @@ public class GameApplication extends Application {
     private static LoginController loginController;
     private static ScoreboardController scoreboardController;
     private static String LastProposition;
+    private static String actualUsername;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,11 +34,6 @@ public class GameApplication extends Application {
         stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
-
-        /*
-        gameController = fxmlLoader.getController();
-        client = new Client("localhost", 1234, gameController, null);
-        */
 
         loginController = fxmlLoader.getController();
         client = new Client("localhost", 1234, null, loginController, null, stage);
@@ -124,7 +120,7 @@ public class GameApplication extends Application {
     public static void LoadGameScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
-        client.getStage().setTitle("Flagame");
+        client.getStage().setTitle("Flagame — " + actualUsername);
         Image icon = new Image(client.getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
         client.getStage().getIcons().add(icon);
         client.getStage().setScene(scene);
@@ -163,6 +159,7 @@ public class GameApplication extends Application {
     }
 
     public static void Login(String username, String password) throws IOException {
+        actualUsername = username;
         Message messageToServer = new Message("",username + "|" + password,102);
         client.getConnection().getOut().writeObject(messageToServer);
         client.getConnection().getOut().flush();
