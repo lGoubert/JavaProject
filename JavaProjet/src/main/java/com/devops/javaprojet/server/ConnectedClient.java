@@ -58,6 +58,44 @@ public class ConnectedClient implements Runnable {
         }
     }
 
+    //Crédit : ChatGPT
+    public static boolean isAlmostEqual(String s1, String s2, int tolerance) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+
+        // Tableau de distances
+        int[][] distance = new int[len1 + 1][len2 + 1];
+
+        // Initialisation des distances
+        for (int i = 0; i <= len1; i++) {
+            distance[i][0] = i;
+        }
+        for (int j = 0; j <= len2; j++) {
+            distance[0][j] = j;
+        }
+
+        // Calcul des distances
+        for (int j = 1; j <= len2; j++) {
+            for (int i = 1; i <= len1; i++) {
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                    distance[i][j] = distance[i - 1][j - 1];
+                } else {
+                    int substitution = distance[i - 1][j - 1] + 1;
+                    int insertion = distance[i][j - 1] + 1;
+                    int suppression = distance[i - 1][j] + 1;
+                    distance[i][j] = Math.min(Math.min(substitution, insertion), suppression);
+                }
+            }
+        }
+
+        // Comparaison des distances avec la tolérance
+        int maxLen = Math.max(len1, len2);
+        int minLen = Math.min(len1, len2);
+        int maxDistance = (int) Math.ceil(maxLen * (1.0 - (double) tolerance / 100.0));
+        int actualDistance = distance[len1][len2];
+        return actualDistance <= maxDistance && actualDistance <= (int) Math.ceil(minLen * (double) tolerance / 100.0);
+    }
+
     public void run() {
         try {
             in = new ObjectInputStream(socket.getInputStream());
@@ -129,8 +167,8 @@ public class ConnectedClient implements Runnable {
                                 Message messageProposition = new Message("PROPOSITION",client.getName() + " a proposé " +  mess.getContent(),201);
                                 server.broadcastMessage(messageProposition, -1);
 
+                                int score = Integer.parseInt(MainServer.flagMap.get("difficulty"));
                                 if (clientAnswer.toLowerCase().equals(MainServer.flagMap.get("country").toLowerCase())){
-                                    int score = Integer.parseInt(MainServer.flagMap.get("difficulty"));
 
                                     Message messageGoodAnswser = new Message("BONNE REPONSE",client.getName() + " a trouvé la bonne réponse et marque " +  score + " point(s).",201);
                                     server.broadcastMessage(messageGoodAnswser, -1);
@@ -147,13 +185,18 @@ public class ConnectedClient implements Runnable {
                                     Message messageSendFlag = new Message("server",MainServer.flagMap.get("flag"),206);
                                     server.broadcastMessage(messageSendFlag, -1);
                                     System.out.println("Envoie du nouveau drapeau.");
+                                    MainServer.resetTimer();
+                                } else if (isAlmostEqual(clientAnswer.toLowerCase(), MainServer.flagMap.get("country").toLowerCase(), 10 * (score - 1))) {
+                                    Message messageAlmostGoodAnswser = new Message("AIDE",client.getName() + " presque ! ",201);
+                                    server.broadcastMessage(messageAlmostGoodAnswser, -1);
+                                    System.out.println(mess.getContent());
                                 }
                                 break;
                             case 105: //Scoreboard
                                 ArrayList<String> scores = MainServer.api.GetScoreboard();
-                                for (String score: scores) {
-                                    System.out.println(score);
-                                    Message message = new Message("", score, 207);
+                                for (String highScore: scores) {
+                                    System.out.println(highScore);
+                                    Message message = new Message("", highScore, 207);
                                     server.sendMessageToClientId(message, id);
                                 }
                                 System.out.println(mess.getContent());
