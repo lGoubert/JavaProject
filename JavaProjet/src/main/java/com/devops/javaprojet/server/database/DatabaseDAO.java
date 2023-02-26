@@ -41,14 +41,12 @@ public class DatabaseDAO {
     public ResultSet GetScoreboard(int scoreboardSize) throws SQLException {
         PreparedStatement prepareStatement = connection.prepareStatement("SELECT id_user, SUM(score) AS Scoreboard FROM games_scores GROUP BY id_user ORDER BY scoreboard DESC LIMIT " + scoreboardSize + ";");
         ResultSet result = prepareStatement.executeQuery();
-        result.first();
         return result;
     }
 
     public ResultSet GetScoreboard() throws SQLException {
         PreparedStatement prepareStatement = connection.prepareStatement("SELECT id_user, SUM(score) AS Scoreboard FROM games_scores GROUP BY id_user ORDER BY scoreboard DESC LIMIT 10;");
         ResultSet result = prepareStatement.executeQuery();
-        result.first();
         return result;
     }
 

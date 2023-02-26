@@ -2,7 +2,7 @@
 
 .background{
     -fx-background-image: url("background.png");
-    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
@@ -33,7 +33,31 @@
 }
 
 .chat, .chat:focused{
-    -fx-text-fill: #ced6e0;
+}
+
+.chat > Text {
+    -fx-text-fill: white;
+    -fx-font-family: "Gill Sans Nova";
+    -fx-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 12px;
+}
+
+.deconnection-button {
+    -fx-background-color: linear-gradient(#a9a9a9, #d3d3d3);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-font-family: "Gill Sans Nova";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 5, 0, 0, 1);
+    -fx-transition: all 0.3s ease;
+}
+
+.deconnection-button:hover {
+    -fx-background-color: linear-gradient(#d3d3d3, #a9a9a9);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 7, 0, 0, 2);
 }

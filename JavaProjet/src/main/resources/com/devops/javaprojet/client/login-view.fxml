@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1024.0" styleClass="background" stylesheets="@login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devops.javaprojet.client.LoginController">
   <columnConstraints>
@@ -35,17 +37,14 @@
             </TextField>
          </children>
       </VBox>
-      <VBox prefHeight="66.0" prefWidth="435.0" styleClass="title-box" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox alignment="CENTER" prefHeight="66.0" prefWidth="435.0" styleClass="title-box" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="92.0" prefWidth="437.0" styleClass="title" stylesheets="@login.css" text="FlagGame">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </TextField>
+            <ImageView fx:id="imageOrangeLogo" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 1000;">
+               <image>
+                  <Image url="@icon.png" />
+               </image>
+            </ImageView>
          </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
       </VBox>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="289.0" prefWidth="435.0" styleClass="box" stylesheets="@login.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
@@ -78,7 +77,7 @@
                <VBox.margin>
                   <Insets top="-8.0" />
                </VBox.margin></PasswordField>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonHandle" text="Connexion">
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonHandle" text="Connexion" styleClass="login-button">
                <VBox.margin>
                   <Insets top="16.0" />
                </VBox.margin></Button>
@@ -115,18 +114,22 @@
                <VBox.margin>
                   <Insets top="-8.0" />
                </VBox.margin></PasswordField>
-            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonHandle" text="Créer un compte">
+            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonHandle" text="Créer un compte" styleClass="login-button">
                <VBox.margin>
                   <Insets top="16.0" />
-               </VBox.margin></Button>
+               </VBox.margin>
+            </Button>
          </children>
          <GridPane.margin>
             <Insets bottom="32.0" top="32.0" />
          </GridPane.margin>
       </VBox>
       <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <padding>
+            <Insets top="0" right="10" bottom="10" left="0" />
+         </padding>
          <children>
-            <Button fx:id="buttonScore" mnemonicParsing="false" onAction="#scoreButtonHandle" styleClass="input" text="Scoreboard" />
+            <Button fx:id="buttonScore" mnemonicParsing="false" onAction="#scoreButtonHandle" styleClass="scoreboard-button" text="Scoreboard"></Button>
          </children>
       </VBox>
    </children>

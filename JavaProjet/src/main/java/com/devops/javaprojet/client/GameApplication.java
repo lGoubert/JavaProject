@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -21,20 +22,18 @@ public class GameApplication extends Application {
     private static GameController gameController;
     private static LoginController loginController;
     private static ScoreboardController scoreboardController;
+    private static String LastProposition;
+    private static String actualUsername;
 
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         stage.setTitle("Flagame");
-        stage.getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        Image icon = new Image(getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
+        stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.show();
-
-        /*
-        gameController = fxmlLoader.getController();
-        client = new Client("localhost", 1234, gameController, null);
-        */
 
         loginController = fxmlLoader.getController();
         client = new Client("localhost", 1234, null, loginController, null, stage);
@@ -63,6 +62,8 @@ public class GameApplication extends Application {
             client.getConnection().getOut().flush();
 
             gameController.getChatText().setText("");
+
+            keepLastMessages(gameController.getChatFlow());
         }
     }
 
@@ -72,6 +73,14 @@ public class GameApplication extends Application {
             client.getConnection().getOut().writeObject(messageToServer);
             client.getConnection().getOut().flush();
 
+            LastProposition = gameController.getImageText().getText();
+            gameController.getImageText().setText("");
+            keepLastMessages(gameController.getChatFlow());
+        }
+        else if (KeyCode.UP == event.getCode()){
+            gameController.getImageText().setText(LastProposition);
+        }
+        else if (KeyCode.DOWN == event.getCode()){
             gameController.getImageText().setText("");
         }
     }
@@ -80,7 +89,8 @@ public class GameApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("scoreboard-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         client.getStage().setTitle("Flagame");
-        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        Image icon = new Image(client.getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
+        client.getStage().getIcons().add(icon);
         client.getStage().setScene(scene);
         client.getStage().show();
 
@@ -97,7 +107,8 @@ public class GameApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
         client.getStage().setTitle("Flagame");
-        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        Image icon = new Image(client.getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
+        client.getStage().getIcons().add(icon);
         client.getStage().setScene(scene);
         client.getStage().show();
 
@@ -109,8 +120,9 @@ public class GameApplication extends Application {
     public static void LoadGameScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
-        client.getStage().setTitle("Flagame");
-        client.getStage().getIcons().add(new Image("http://45.155.169.116:6010/api/public/dl/8LLUASbb?inline=true"));
+        client.getStage().setTitle("Flagame — " + actualUsername);
+        Image icon = new Image(client.getClass().getResourceAsStream("/com/devops/javaprojet/client/icon.png"));
+        client.getStage().getIcons().add(icon);
         client.getStage().setScene(scene);
         client.getStage().show();
 
@@ -147,8 +159,20 @@ public class GameApplication extends Application {
     }
 
     public static void Login(String username, String password) throws IOException {
+        actualUsername = username;
         Message messageToServer = new Message("",username + "|" + password,102);
         client.getConnection().getOut().writeObject(messageToServer);
         client.getConnection().getOut().flush();
+    }
+
+    public static void keepLastMessages(TextFlow textFlow) {
+        // Compter le nombre de lignes dans le TextFlow
+        int numLines = textFlow.getChildren().size();
+
+        // Supprimer les lignes les plus anciennes si nécessaire
+        if (numLines > 30) {
+            int numLinesToRemove = numLines - 20;
+            textFlow.getChildren().remove(0, numLinesToRemove);
+        }
     }
 }

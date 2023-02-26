@@ -16,8 +16,12 @@ import java.util.Random;
 public class Api {
     DatabaseDAO databaseDAO;
 
+    // Stocker les 100 derniers index de pays retournés par la fonction
+    private ArrayList<Integer> lastIndexes;
+
     public Api(DatabaseDAO databaseDAO) {
         this.databaseDAO = databaseDAO;
+        lastIndexes = new ArrayList<>();
     }
 
     public Message Login(String username, String password) throws SQLException {
@@ -29,7 +33,7 @@ public class Api {
             case 0:
                 return new Message("", "L'association username/password est incorrect !", 202);
             case 1:
-                return new Message("", "Connexion valide bienvenue " + username + " !", 203);
+                return new Message("", "Connexion valide. Bienvenue " + username + " !", 203);
             default:
                 return new Message("", "Erreur lors de la connexion", 202);
         }
@@ -62,21 +66,33 @@ public class Api {
         return databaseDAO.GetUser(username);
     }
 
+
     public Map<String, String> GetInfoCountryRandom() throws SQLException {
         Map<String, String> map = new HashMap<>();
         ResultSet result = databaseDAO.GetAllCountries();
         result.last();
+        int numRows = result.getRow();
+
         Random randNum = new Random();
-        int randInt = randNum.nextInt(result.getRow()) + 1;
+        int randInt = randNum.nextInt(numRows) + 1;
+
+        // Vérifier si le nouvel index est contenu dans la liste des 100 derniers index
+        while (lastIndexes.size() > 0 && lastIndexes.contains(randInt)) {
+            randInt = randNum.nextInt(numRows) + 1;
+        }
+
+        // Ajouter le nouvel index à la liste des 100 derniers index
+        lastIndexes.add(randInt);
+        if (lastIndexes.size() > 100) {
+            lastIndexes.remove(0);
+        }
+
         result = databaseDAO.GetCountryFromID(randInt);
         ResultSetMetaData data = result.getMetaData();
         for (int i = 1; i <= data.getColumnCount(); i++) {
             map.put(data.getColumnName(i), result.getString(i));
         }
         return map;
-        /*
-          map.get("flag")
-         */
     }
 
     public Map<String, String> GetInfoCountry(int idCountry) throws SQLException {

@@ -2,9 +2,12 @@ package com.devops.javaprojet.client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.TextFlow;
+
+import java.io.IOException;
 
 public class GameController {
     public TextField getChatText() {
@@ -37,4 +40,10 @@ public class GameController {
     @FXML
     private ImageView imageView;
 
+
+    @FXML
+    Button buttonDeconnection;
+    @FXML public void deconnectionButtonHandle() throws IOException {
+        GameApplication.LoadMainScene();
+    }
 }

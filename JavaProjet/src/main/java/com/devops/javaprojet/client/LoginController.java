@@ -29,13 +29,13 @@ public class LoginController {
     PasswordField registerPassword;
     @FXML
     Button registerButton;
-
     @FXML
     Button buttonScore;
 
     public void initialize(){
         statusMessage.setText("");
         statusMessage.setVisible(false);
+        loginUsername.requestFocus();
     }
 
     //Button login
