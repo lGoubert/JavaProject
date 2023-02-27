@@ -44,7 +44,7 @@ public class Api {
 
         if(password.equals("")){ return new Message("", "Le mot de passe ne peut pas être vide", 204); }
 
-        switch (databaseDAO.GetUser(username.toLowerCase())){
+        switch (databaseDAO.GetUserExist(username.toLowerCase())){
             case 0:
                 return new Message("", "Le pseudo saisie existe deja", 204);
             case 1:
