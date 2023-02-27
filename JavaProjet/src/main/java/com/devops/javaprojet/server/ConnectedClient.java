@@ -157,6 +157,10 @@ public class ConnectedClient implements Runnable {
                                 } catch (NoSuchAlgorithmException e) {
                                     throw new RuntimeException(e);
                                 }
+
+                                Message messageSendActualFlag2 = new Message("server", MainServer.flagMap.get("flag"), 206);
+                                server.broadcastMessage(messageSendActualFlag2, -1);
+                                System.out.println("Envoi du drapeau actuel.");
                                 break;
                             case 104: //Response
                                 String clientAnswer = Normalizer.normalize(mess.getContent(), Normalizer.Form.NFD)

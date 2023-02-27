@@ -66,7 +66,7 @@ public class Connection implements Runnable {
                 System.out.println(userInput.getSender() + " a ecrit " + userInput.getContent());
                 switch (userInput.getType()) {
                     case 201: //Message public
-                        if(gameController == null){ continue; }
+                        //if(gameController == null){ continue; }
                         Platform.runLater(() -> {
                             Text receivedMessage = new Text(userInput.getSender() + ": " + userInput.getContent() + "\n");
                             gameController.getChatFlow().getChildren().add(receivedMessage);
@@ -74,7 +74,7 @@ public class Connection implements Runnable {
                         break;
                     case 202://Login Error
                     case 204: //Register Error
-                        if(scoreboardController == null){ continue; }
+                        //if(scoreboardController == null){ continue; }
                         loginController.showStatus(userInput.getContent());
                         break;
                     case 203://Login
@@ -88,7 +88,7 @@ public class Connection implements Runnable {
                         });
                         break;
                     case 206:
-                        if(gameController == null){ continue; }
+                        //if(gameController == null){ continue; }
                         Platform.runLater(() -> {
                             try {
                                 String imageData = "data:image/png;base64," + userInput.getContent();
@@ -111,7 +111,7 @@ public class Connection implements Runnable {
                         });
                         break;
                     case 207:
-                        if(scoreboardController == null){ continue; }
+                        //if(scoreboardController == null){ continue; }
                         String input = userInput.getContent();
                         System.out.println(input);
                         int index = input.indexOf("|");
