@@ -153,6 +153,7 @@ public class GameApplication extends Application {
     }
 
     public static void Register(String username, String password) throws IOException {
+        actualUsername = username;
         Message messageToServer = new Message("",username + "|" + password,103);
         client.getConnection().getOut().writeObject(messageToServer);
         client.getConnection().getOut().flush();
