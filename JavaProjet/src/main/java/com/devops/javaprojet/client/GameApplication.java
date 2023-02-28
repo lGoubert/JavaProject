@@ -36,7 +36,7 @@ public class GameApplication extends Application {
         stage.show();
 
         loginController = fxmlLoader.getController();
-        client = new Client("172.20.10.2", 1234, null, loginController, null, stage);
+        client = new Client("localhost", 1234, null, loginController, null, stage);
 
         //Ferme tout les thread ouvert a la fermeture du programme
        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
